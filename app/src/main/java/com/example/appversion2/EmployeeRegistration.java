@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class EmployeeRegistration extends AppCompatActivity {
 
+    private final String role = "Employee";
     private EditText EmployeeFirstName, EmployeeLastName, EmployeePassword, EmployeeNumber;
     public EditText EmployeeEmail;
     private Button EmployeeRegButton;
@@ -42,7 +43,7 @@ public class EmployeeRegistration extends AppCompatActivity {
                     String employee_email = EmployeeEmail.getText().toString().trim();
                     String employee_password = EmployeePassword.getText().toString().trim();
 
-                    firebaseAuth.createUserWithEmailAndPassword(employee_email, employee_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    firebaseAuth.createUserWithEmailAndPassword(employee_email, employee_password, role).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 

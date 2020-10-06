@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class CustomerRegistration extends AppCompatActivity {
 
+    private final String role = "Customer";
     private EditText CustomerFirstName, CustomerLastName, CustomerPassword;
     public EditText CustomerEmail;
     private Button CustomerRegButton;
@@ -42,7 +43,7 @@ public class CustomerRegistration extends AppCompatActivity {
                     String customer_email = CustomerEmail.getText().toString().trim();
                     String customer_password = CustomerPassword.getText().toString().trim();
 
-                    firebaseAuth.createUserWithEmailAndPassword(customer_email, customer_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    firebaseAuth.createUserWithEmailAndPassword(customer_email, customer_password, role).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
