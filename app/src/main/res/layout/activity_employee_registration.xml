@@ -35,10 +35,10 @@
         android:textColorHint="@color/login_form_details"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/guideline_right"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@id/etEmployeeLastName"
-        app:layout_constraintVertical_bias="0.066" />
+        app:layout_constraintTop_toBottomOf="@id/etEmployeeNumber"
+        app:layout_constraintVertical_bias="0.079" />
 
     <EditText
         android:id="@+id/etEmployeePassword"
@@ -52,10 +52,10 @@
         android:textColorHint="@color/login_form_details"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/guideline_right"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/etEmployeeEmail"
-        app:layout_constraintVertical_bias="0.073" />
+        app:layout_constraintVertical_bias="0.104" />
 
     <EditText
         android:id="@+id/etEmployeeNumber"
@@ -71,8 +71,8 @@
         app:layout_constraintEnd_toStartOf="@id/guideline_right"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@id/etEmployeePassword"
-        app:layout_constraintVertical_bias="0.102" />
+        app:layout_constraintTop_toBottomOf="@id/etEmployeeLastName"
+        app:layout_constraintVertical_bias="0.067" />
 
     <Button
         android:id="@+id/btnEmployeeRegister"
@@ -86,7 +86,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@id/etEmployeeNumber" />
+        app:layout_constraintTop_toBottomOf="@id/etEmployeePassword" />
 
     <TextView
         android:id="@+id/tvEmployeeLogin"
@@ -127,8 +127,22 @@
         android:textColorHint="@color/login_form_details"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/guideline_right"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintTop_toTopOf="@id/etEmployeeFirstName"
-        app:layout_constraintVertical_bias="0.154" />
+        app:layout_constraintVertical_bias="0.148" />
+
+    <TextView
+        android:id="@+id/tvEmployeeCharacters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password must include letters and numbers."
+        android:textColor="@color/login_form_details_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/etEmployeePassword"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,15 +15,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class CustomerRegistration extends AppCompatActivity {
 
-    private final String role = "Customer";
+    private String CustomerRole = "Customer";
     private EditText CustomerFirstName, CustomerLastName, CustomerPassword;
     public EditText CustomerEmail;
     private Button CustomerRegButton;
     private TextView CustomerLogin;
-    String firstName, lastName, email, password;
+    private TextView CustomerCharacters;
+    String firstName, lastName, email, password, role;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -43,11 +46,12 @@ public class CustomerRegistration extends AppCompatActivity {
                     String customer_email = CustomerEmail.getText().toString().trim();
                     String customer_password = CustomerPassword.getText().toString().trim();
 
-                    firebaseAuth.createUserWithEmailAndPassword(customer_email, customer_password, role).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    firebaseAuth.createUserWithEmailAndPassword(customer_email, customer_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if(task.isSuccessful()) {
+                                sendUserData();
                                 Toast.makeText(CustomerRegistration.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                                 finish();
                                 startActivity(new Intent(CustomerRegistration.this, MainActivity.class));
@@ -75,6 +79,7 @@ public class CustomerRegistration extends AppCompatActivity {
         CustomerPassword = (EditText)findViewById(R.id.etCustomerPassword);
         CustomerRegButton = (Button)findViewById(R.id.btnCustomerRegister);
         CustomerLogin = (TextView)findViewById(R.id.tvCustomerLogin);
+        CustomerCharacters = (TextView)findViewById(R.id.tvCustomerCharacters);
     }
 
     private Boolean validate() {
@@ -84,6 +89,7 @@ public class CustomerRegistration extends AppCompatActivity {
         lastName = CustomerLastName.getText().toString();
         password = CustomerPassword.getText().toString();
         email = CustomerEmail.getText().toString();
+        role = CustomerRole;
 
         if(firstName.isEmpty() || lastName.isEmpty() || password.isEmpty() || email.isEmpty()) {
             Toast.makeText(this, "Please enter ALL details", Toast.LENGTH_SHORT).show();
@@ -92,5 +98,12 @@ public class CustomerRegistration extends AppCompatActivity {
         }
 
         return result;
+    }
+
+    private void sendUserData() {
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
+        CustomerUserProfile customerUserProfile = new CustomerUserProfile(firstName, lastName, email, password, role);
+        myRef.setValue(customerUserProfile);
     }
 }

@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
+    private EditText Name;
+    String name;
     private EditText Email;
     private EditText Password;
     private TextView Info;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Name = (EditText)findViewById(R.id.etName);
         Email = (EditText)findViewById(R.id.etEmail);
         Password = (EditText)findViewById(R.id.etPassword);
         Info = (TextView)findViewById(R.id.tvInfo);
@@ -71,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-
         userRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,9 +81,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
     private void validate(String EmployeeEmail, String EmployeePassword, final FirebaseUser employeeUser,final FirebaseUser customerUser){
 
-        progressDialog.setMessage("Loading");
+        progressDialog.setMessage("Loading, please wait.");
         progressDialog.show();
 
         firebaseAuth.signInWithEmailAndPassword(EmployeeEmail, EmployeePassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -90,13 +95,20 @@ public class MainActivity extends AppCompatActivity {
                 if(task.isSuccessful() && (employeeUser.getEmail() != "")) {
                     progressDialog.dismiss();
                     Toast.makeText(MainActivity.this, "Employee Login Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, EmployeeWelcomePage.class));
+                    Intent i = new Intent(MainActivity.this, EmployeeWelcomePage.class);
+                    name = Name.getText().toString();
+                    i.putExtra("Value", name);
+                    startActivity(i);
                     finish();
                 }
                 else if(task.isSuccessful() && (customerUser.getEmail() != "") ){
                     progressDialog.dismiss();
                     Toast.makeText(MainActivity.this, "Customer Login Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, CustomerWelcomePage.class));
+                    Intent i = new Intent(MainActivity.this, CustomerWelcomePage.class);
+                    name = Name.getText().toString();
+                    i.putExtra("Value", name);
+                    startActivity(i);
+                    finish();
                 }
                 else{
                     Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();

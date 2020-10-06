@@ -10,18 +10,15 @@ import com.google.firebase.auth.FirebaseAuth;
 public class EmployeeWelcomePage extends AppCompatActivity {
 
     TextView welcomeEmployee;
-    String welcome;
+    String welcomeemployee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-
         setContentView(R.layout.activity_employee_welcome_page);
         welcomeEmployee = findViewById(R.id.tvWelcomeEmployee);
-//        welcome = getIntent().getExtras().getString("Value");
-        welcomeEmployee.setText("Welcome " + firebaseAuth.getCurrentUser().getEmail() + ", you are logged in as an employee.");
+        welcomeemployee = getIntent().getExtras().getString("Value");
+        welcomeEmployee.setText("Welcome " + welcomeemployee + ", you are logged in as an employee.");
 
     }
 }
