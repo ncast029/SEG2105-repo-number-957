@@ -1,19 +1,35 @@
 package com.example.appversion2;
 
-public class EmployeeUserProfile {
-    public String EmployeeFirstName;
-    public String EmployeeLastName;
-    public String EmployeeEmail;
-    public String EmployeePassword;
-    public String EmployeeNumber;
-    public String EmployeeRole;
+public class EmployeeUserProfile extends Profile {
+    private String employeeNumber;
 
     public EmployeeUserProfile(String employeeFirstName, String employeeLastName, String employeeEmail, String employeePassword, String employeeNumber, String employeeRole) {
-        EmployeeFirstName = employeeFirstName;
-        EmployeeLastName = employeeLastName;
-        EmployeeEmail = employeeEmail;
-        EmployeePassword = employeePassword;
-        EmployeeNumber = employeeNumber;
-        EmployeeRole = employeeRole;
+        super(employeeFirstName, employeeLastName, employeeEmail, employeePassword, employeeRole);
+        this.employeeNumber = employeeNumber;
     }
+
+    public String getEmployeeNumber() {
+        return employeeNumber;
+    }
+
+    public String getEmployeeFirstName() {
+        return super.getFirstName();
+    }
+
+    public String getEmployeeLastName() {
+        return super.getLastName();
+    }
+
+    public String getEmployeeEmail() {
+        return super.getEmail();
+    }
+
+    public String getEmployeePassword() {
+        return super.getPassword();
+    }
+
+    public String getEmployeeRole() {
+        return super.getRole();
+    }
+
 }
