@@ -20,7 +20,7 @@ public class CustomerWelcomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_welcome_page);
 
-        welcomeCustomer = findViewById(R.id.tvWelcomeEmployee);
+        welcomeCustomer = findViewById(R.id.tvWelcomeCustomer);
         welcomecustomer = getIntent().getExtras().getString("Value");
         welcomeCustomer.setText("Welcome " + welcomecustomer + ", you are logged in as an customer.");
 

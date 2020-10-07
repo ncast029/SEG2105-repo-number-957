@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
             Login.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    validateAdmin(Email.getText().toString(), Password.getText().toString());
                     validate(Email.getText().toString(), Password.getText().toString(),employeeUser,customerUser);
                 }
             });
@@ -82,6 +83,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void validateAdmin(String userName, String userPassword) {
+        if(userName.equals("Admin") && userPassword.equals("admin")) {
+            Intent intent = new Intent(MainActivity.this, AdminWelcomePage.class);
+            name = Name.getText().toString();
+            intent.putExtra("Value", name);
+            startActivity(intent);
+            finish();
+        }
+        else {
+            counter--;
+
+            Info.setText("No of attempts remaining: " + String.valueOf(counter));
+
+            if(counter == 0) {
+                Login.setEnabled(false);
+            }
+        }
+    }
 
 
     private void validate(String EmployeeEmail, String EmployeePassword, final FirebaseUser employeeUser,final FirebaseUser customerUser){
@@ -123,5 +142,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 
 }
