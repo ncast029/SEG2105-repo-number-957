@@ -106,10 +106,10 @@
             android:text="Photo of the customer " />
 
         <Button
-            android:id="@+id/Confirm Edit Service"
+            android:id="@+id/ConfirmEditServiceButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Confirm Edit Service" />
 
         <Button
             android:id="@+id/backButton"
