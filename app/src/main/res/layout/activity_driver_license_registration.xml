@@ -88,6 +88,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -117,38 +118,14 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/uibtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.808" />
-
-    <Button
         android:id="@+id/hlpbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/required_documents"
-        app:layout_constraintBottom_toBottomOf="@+id/uibtn"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.877"
-        app:layout_constraintStart_toEndOf="@+id/uibtn"
-        app:layout_constraintTop_toTopOf="@+id/uibtn"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/filebtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/file"
-        app:layout_constraintBottom_toBottomOf="@+id/hlpbtn"
-        app:layout_constraintEnd_toStartOf="@+id/hlpbtn"
-        app:layout_constraintStart_toEndOf="@+id/uibtn"
-        app:layout_constraintTop_toTopOf="@+id/uibtn" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
