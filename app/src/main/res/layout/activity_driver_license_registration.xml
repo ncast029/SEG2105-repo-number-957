@@ -14,7 +14,7 @@
         android:layout_marginTop="52dp"
         android:background="@drawable/et_bg"
         android:gravity="center_horizontal"
-        android:hint="dd/mm/yy"
+        android:hint="@string/dd_mm_yy"
         android:inputType="date"
         android:padding="16dp"
         android:textColorHint="@color/login_form_details"
@@ -22,7 +22,8 @@
         app:layout_constraintEnd_toStartOf="@id/guideline_right"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/etName" />
+        app:layout_constraintTop_toBottomOf="@+id/etName"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/addrField"
@@ -30,7 +31,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/et_bg"
         android:gravity="center_horizontal"
-        android:hint="Address"
+        android:hint="@string/address"
         android:inputType="text"
         android:padding="16dp"
         android:textColorHint="@color/login_form_details"
@@ -38,22 +39,23 @@
         app:layout_constraintEnd_toStartOf="@id/guideline_right"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_bg"
-        android:text="Submit"
-        android:textAllCaps="false"
+        android:text="@string/submit"
+        android:textAllCaps="true"
         android:textColor="@color/login_form_details_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/addrField"
-        app:layout_constraintVertical_bias="0.695" />
+        app:layout_constraintVertical_bias="0.868" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left"
@@ -77,7 +79,7 @@
         android:background="@drawable/et_bg"
         android:gravity="center_horizontal"
         android:padding="16dp"
-        android:text="Driver's License Form"
+        android:text="@string/driver_s_license_form"
         android:textAlignment="center"
         android:textColorHint="@color/login_form_details"
         app:layout_constraintEnd_toStartOf="@id/guideline_right"
@@ -99,45 +101,54 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="G1" />
+            android:text="@string/g1" />
 
         <RadioButton
             android:id="@+id/g2btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="G2" />
+            android:text="@string/g2" />
 
         <RadioButton
             android:id="@+id/gbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="G" />
+            android:text="@string/g" />
     </RadioGroup>
 
     <Button
         android:id="@+id/uibtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upload image"
+        android:text="@string/image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.771" />
+        app:layout_constraintVertical_bias="0.808" />
 
     <Button
         android:id="@+id/hlpbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
-        android:text="Help"
+        android:text="@string/required_documents"
         app:layout_constraintBottom_toBottomOf="@+id/uibtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.877"
         app:layout_constraintStart_toEndOf="@+id/uibtn"
         app:layout_constraintTop_toTopOf="@+id/uibtn"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/filebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/file"
+        app:layout_constraintBottom_toBottomOf="@+id/hlpbtn"
+        app:layout_constraintEnd_toStartOf="@+id/hlpbtn"
+        app:layout_constraintStart_toEndOf="@+id/uibtn"
+        app:layout_constraintTop_toTopOf="@+id/uibtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

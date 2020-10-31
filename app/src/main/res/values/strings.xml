@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">AppVersion2</string>
+    <string name="file">File</string>
+    <string name="driver_s_license_form">Driver\'s License Form</string>
+    <string name="g1">G1</string>
+    <string name="g2">G2</string>
+    <string name="dd_mm_yy">DD/MM/YY</string>
+    <string name="g">G</string>
+    <string name="address">ADDRESS</string>
+    <string name="submit">Submit</string>
+    <string name="required_documents">Required Documents</string>
+    <string name="image">Image</string>
 </resources>
