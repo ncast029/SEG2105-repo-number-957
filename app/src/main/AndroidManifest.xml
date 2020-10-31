@@ -23,6 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DriversLicense">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_VIEW" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
