@@ -11,7 +11,7 @@
         android:id="@+id/tvWelcomeAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome, ! You are logged in as an employee."
+        android:text="Welcome, ! You are logged in as an admin."
         android:textColor="@color/login_form_details"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,4 +33,40 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="24dp" />
+
+    <LinearLayout
+        android:id="@+id/ServiceButtonLayout"
+        android:layout_width="142dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="67dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="32dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/tvWelcomeAdmin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/CreateServiceButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Create Service " />
+
+        <Button
+            android:id="@+id/EditServiceButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Edit Service " />
+
+        <Button
+            android:id="@+id/RemoveServiceButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Remove Service " />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
