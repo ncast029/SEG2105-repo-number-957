@@ -1,8 +1,5 @@
 package com.example.appversion2;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,13 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
 
 public class AdminRemoveService extends ServiceProfile {
@@ -27,8 +17,6 @@ public class AdminRemoveService extends ServiceProfile {
     private TextView pageInfoText;
     private EditText serviceName;
     private String serviceNameString;
-    private FirebaseAuth firebaseAuth;
-
 
     public AdminRemoveService(String serviceName, boolean firstName, boolean secondName, boolean dateOfBirth, boolean address, boolean licenseType, boolean proofOfResidence, boolean ProofOfStatus, boolean photoOfTheCustomer)
     {
@@ -41,8 +29,6 @@ public class AdminRemoveService extends ServiceProfile {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_create_service_page);
         setupUIViews();
-
-        firebaseAuth = FirebaseAuth.getInstance();
 
         confirmRemovalOfService.setOnClickListener(new View.OnClickListener()
         {

@@ -1,7 +1,6 @@
 package com.example.appversion2;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.*;
 import java.util.ArrayList;
 
 public class ServiceProfile extends AppCompatActivity {
