@@ -29,21 +29,21 @@ public class AdminWelcomePage extends AppCompatActivity {
         create_Service_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(CustomerRegistration.this, MainActivity.class));
+                startActivity(new Intent(AdminCreateService.this, MainActivity.class));
             }
         });
 
         edit_service_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(CustomerRegistration.this, MainActivity.class));
+                startActivity(new Intent(AdminEditService.this, MainActivity.class));
             }
         });
 
         remove_service_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(CustomerRegistration.this, MainActivity.class));
+                startActivity(new Intent(AdminRemoveService.this, MainActivity.class));
             }
         });
     }
