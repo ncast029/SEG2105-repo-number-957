@@ -24,8 +24,7 @@ import java.util.ArrayList;
 public class AdminRemoveService extends ServiceProfile {
 
     private Button confirmRemovalOfService, backToAdminWelcome;
-    private TextView pageInfoText, stateInfoText;
-    private CheckBox stateOfService;
+    private TextView pageInfoText;
     private EditText serviceName;
     private String serviceNameString;
     private FirebaseAuth firebaseAuth;
@@ -82,9 +81,6 @@ public class AdminRemoveService extends ServiceProfile {
     private void setupUIViews() {
         pageInfoText = (TextView)findViewById(R.id.tvCreateServiceText);
         serviceName = (EditText)findViewById(R.id.etServiceName);
-
-        stateInfoText = (TextView)findViewById(R.id.tvServiceState);
-        stateOfService = (CheckBox)findViewById(R.id.toggleServiceButton);
 
         confirmRemovalOfService = (Button)findViewById(R.id.confirmCreationButton);
         backToAdminWelcome = (Button)findViewById(R.id.backButton);

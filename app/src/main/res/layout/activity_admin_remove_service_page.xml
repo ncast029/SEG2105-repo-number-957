@@ -45,18 +45,6 @@
             android:inputType="textPersonName"
             android:text="Name of Service" />
 
-        <TextView
-            android:id="@+id/tvServiceState"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Toggle service avaliability" />
-
-        <CheckBox
-            android:id="@+id/toggleServiceButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Checked is on / unmarked is off" />
-
         <Button
             android:id="@+id/ConfirmRemoveService"
             android:layout_width="match_parent"

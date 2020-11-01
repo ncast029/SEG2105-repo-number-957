@@ -24,8 +24,8 @@ import java.util.ArrayList;
 public class AdminCreateService extends ServiceProfile {
 
     private Button confirmCreationOfService, backToAdminWelcome;
-    private TextView pageInfoText, formInformation, documentInformation, stateInfoText;
-    private CheckBox firstName, secondName, dateOfBirth, address, licenseType, proofOfResidence, ProofOfStatus, photoOfTheCustomers, stateOfService;
+    private TextView pageInfoText, formInformation, documentInformation;
+    private CheckBox firstName, secondName, dateOfBirth, address, licenseType, proofOfResidence, ProofOfStatus, photoOfTheCustomers;
     private EditText serviceName;
     private String serviceNameString;
     private FirebaseAuth firebaseAuth;
@@ -83,9 +83,6 @@ public class AdminCreateService extends ServiceProfile {
         proofOfResidence = (CheckBox)findViewById(R.id.ProofOfResidenceButton);
         ProofOfStatus = (CheckBox)findViewById(R.id.ProofOfStatusButton);
         photoOfTheCustomers = (CheckBox)findViewById(R.id.PhotoButton);
-
-        stateInfoText = (TextView)findViewById(R.id.tvServiceState);
-        stateOfService = (CheckBox)findViewById(R.id.toggleServiceButton);
 
         confirmCreationOfService = (Button)findViewById(R.id.confirmCreationButton);
         backToAdminWelcome = (Button)findViewById(R.id.backButton);
