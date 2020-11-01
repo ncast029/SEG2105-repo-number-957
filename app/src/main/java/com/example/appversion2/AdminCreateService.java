@@ -19,7 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AdminCreateService extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class AdminCreateService extends ServiceProfile {
 
     private Button confirmCreationOfService, backToAdminWelcome;
     private TextView pageInfoText, formInformation, documentInformation, stateInfoText;
@@ -27,6 +29,7 @@ public class AdminCreateService extends AppCompatActivity {
     private EditText serviceName;
     private String serviceNameString;
     private FirebaseAuth firebaseAuth;
+
 
 
 
@@ -45,27 +48,10 @@ public class AdminCreateService extends AppCompatActivity {
             public void onClick(View v) {
                 if(validate())
                 {
-                    //Upload service name and requirements to the database
-                    firebaseAuth.createService(serviceNameString, firstName.isChecked(), secondName.isChecked(), dateOfBirth.isChecked(),
-                                                address.isChecked(), licenseType.isChecked(), proofOfResidence.isChecked(), ProofOfStatus.isChecked(),
-                                                photoOfTheCustomers.isChecked()).addOnCompleteListener(new OnCompleteListener<AuthResult>()
-                    {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task)
-                        {
-
-                            if(task.isSuccessful())
-                            {
-                                sendUserData();
-                                Toast.makeText(CustomerRegistration.this, "Registration of Service was Successful", Toast.LENGTH_SHORT).show();
-                                finish();
-                                startActivity(new Intent(CustomerRegistration.this, MainActivity.class));
-                            } else
-                                {
-                                Toast.makeText(CustomerRegistration.this, "Registration of Service Failed", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                    //this line will call the SericeProfile class and create a new service with the paramters as requested by the admin
+                    ServiceProfile addNewService = new ServiceProfile(serviceNameString, firstName.isChecked(), secondName.isChecked(),
+                            dateOfBirth.isChecked(), address.isChecked(), licenseType.isChecked(), proofOfResidence.isChecked(),
+                            ProofOfStatus.isChecked(), photoOfTheCustomers.isChecked());
                 }
             }
         };
@@ -104,25 +90,31 @@ public class AdminCreateService extends AppCompatActivity {
 
     private Boolean validate() {
         Boolean result = false;
+        Boolean singular = true;
         serviceNameString = serviceName.getText().toString();
+
+        ArrayList<ServiceProfile> serviceArrayList = getArrayList();
+        for(int i = 0; i < serviceArrayList.size(); i++)
+        {
+            if(serviceArrayList.get(i).getServiceName().equals(serviceNameString))
+            {
+                result = false;
+                continue;
+            }
+        }
 
         if(serviceNameString.isEmpty()) {
             Toast.makeText(this, "Please make sure to name your service!", Toast.LENGTH_SHORT).show();
+        }
+        else if(!singular)
+        {
+            Toast.makeText(this, "Service name already in use. Please choose a new name!", Toast.LENGTH_SHORT).show();
+
         }
         else
         {
             result = true;
         }
         return result;
-    }
-
-
-    private void sendUserData() {
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
-        ServiceProfile newService = new ServiceProfile(serviceNameString, firstName.isChecked(), secondName.isChecked(), dateOfBirth.isChecked(),
-                                                        address.isChecked(), licenseType.isChecked(), proofOfResidence.isChecked(), ProofOfStatus.isChecked(),
-                                                        photoOfTheCustomers.isChecked());
-        myRef.setValue(newService);
     }
 }

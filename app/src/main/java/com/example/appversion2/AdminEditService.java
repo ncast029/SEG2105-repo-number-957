@@ -19,7 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AdminEditService extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class AdminEditService extends ServiceProfile {
 
     private Button confirmEditOfService, backToAdminWelcome;
     private TextView pageInfoText, formInformation, documentInformation;
@@ -46,7 +48,24 @@ public class AdminEditService extends AppCompatActivity {
             {
                 if(validate())
                 {
-                    //Find section of firebase change respectively
+                    //Find service and edit it.
+                    ArrayList<ServiceProfile> serviceArrayList = getArrayList();
+
+                    for(int i = 0; i < serviceArrayList.size(); i++)
+                    {
+                        if(serviceArrayList.get(i).getServiceName().equals(serviceNameString))
+                        {
+                            serviceArrayList.get(i).setFirstName(firstName.isChecked());
+                            serviceArrayList.get(i).setSecondName(secondName.isChecked());
+                            serviceArrayList.get(i).setDateOfBirth(dateOfBirth.isChecked());
+                            serviceArrayList.get(i).setAddress(address.isChecked());
+                            serviceArrayList.get(i).setLicenseType(licenseType.isChecked());
+                            serviceArrayList.get(i).setProofOfresidence(proofOfResidence.isChecked());
+                            serviceArrayList.get(i).setProofOfStatus(ProofOfStatus.isChecked());
+                            serviceArrayList.get(i).setphotoOfTheCustomer(photoOfTheCustomers.isChecked());
+                        }
+                    }
+                    setArrayList(serviceArrayList);
                 }
             }
         };
@@ -84,10 +103,27 @@ public class AdminEditService extends AppCompatActivity {
 
     private Boolean validate() {
         Boolean result = false;
+        Boolean singular = true;
         serviceNameString = serviceName.getText().toString();
+
+
+        ArrayList<ServiceProfile> serviceArrayList = getArrayList();
+        for(int i = 0; i < serviceArrayList.size(); i++)
+        {
+            if(serviceArrayList.get(i).getServiceName().equals(serviceNameString))
+            {
+                result = false;
+                continue;
+            }
+        }
 
         if(serviceNameString.isEmpty()) {
             Toast.makeText(this, "Please make sure to name your service!", Toast.LENGTH_SHORT).show();
+        }
+        else if(!singular)
+        {
+            Toast.makeText(this, "Service name already in use. Please choose a new name!", Toast.LENGTH_SHORT).show();
+
         }
         else
         {

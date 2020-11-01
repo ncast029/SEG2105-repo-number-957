@@ -18,7 +18,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-public class AdminRemoveService extends AppCompatActivity {
+
+import java.util.ArrayList;
+
+public class AdminRemoveService extends ServiceProfile {
 
     private Button confirmRemovalOfService, backToAdminWelcome;
     private TextView pageInfoText, stateInfoText;
@@ -45,6 +48,16 @@ public class AdminRemoveService extends AppCompatActivity {
                 if(validate())
                 {
                     //Delete service called (name of service)
+                    ArrayList<ServiceProfile> serviceArrayList = getArrayList();
+
+                    for(int i = 0; i < serviceArrayList.size(); i++)
+                    {
+                        if(serviceArrayList.get(i).getServiceName().equals(serviceNameString))
+                        {
+                            serviceArrayList.remove(i);
+                        }
+                    }
+                    setArrayList(serviceArrayList);
                 }
             }
         };
@@ -74,10 +87,26 @@ public class AdminRemoveService extends AppCompatActivity {
 
     private Boolean validate() {
         Boolean result = false;
+        Boolean singular = true;
         serviceNameString = serviceName.getText().toString();
+
+        ArrayList<ServiceProfile> serviceArrayList = getArrayList();
+        for(int i = 0; i < serviceArrayList.size(); i++)
+        {
+            if(serviceArrayList.get(i).getServiceName().equals(serviceNameString))
+            {
+                result = false;
+                continue;
+            }
+        }
 
         if(serviceNameString.isEmpty()) {
             Toast.makeText(this, "Please make sure to name your service!", Toast.LENGTH_SHORT).show();
+        }
+        else if(!singular)
+        {
+            Toast.makeText(this, "Service name already in use. Please choose a new name!", Toast.LENGTH_SHORT).show();
+
         }
         else
         {

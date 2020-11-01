@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
         Info.setText("No of attempts remaining: 5");
 
+
+
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
 
