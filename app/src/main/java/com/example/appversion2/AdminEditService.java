@@ -31,6 +31,11 @@ public class AdminEditService extends ServiceProfile {
     private FirebaseAuth firebaseAuth;
 
 
+    public AdminEditService(String serviceName, boolean firstName, boolean secondName, boolean dateOfBirth, boolean address, boolean licenseType, boolean proofOfResidence, boolean ProofOfStatus, boolean photoOfTheCustomer)
+    {
+        super(serviceName, firstName, secondName, dateOfBirth, address, licenseType, proofOfResidence, ProofOfStatus, photoOfTheCustomer);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
