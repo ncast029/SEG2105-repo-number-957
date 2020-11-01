@@ -72,8 +72,12 @@ public class AdminCreateService extends AppCompatActivity {
 
         backToAdminWelcome.setOnClickListener(new View.OnClickListener()
         {
-
-        }
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(new Intent(AdminCreateService.this, AdminWelcomePage.class));
+            }
+        });
     }
 
     private void setupUIViews() {

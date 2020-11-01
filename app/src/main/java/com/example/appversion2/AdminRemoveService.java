@@ -20,12 +20,46 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 public class AdminRemoveService extends AppCompatActivity {
 
-    private Button confirmCreationOfService, backToAdminWelcome;
+    private Button confirmRemovalOfService, backToAdminWelcome;
     private TextView pageInfoText, stateInfoText;
     private CheckBox stateOfService;
     private EditText serviceName;
     private String serviceNameString;
     private FirebaseAuth firebaseAuth;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_admin_create_service_page);
+        setupUIViews();
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        confirmRemovalOfService.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if(validate())
+                {
+                    //Delete service called (name of service)
+                }
+            }
+        };
+
+        backToAdminWelcome.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(new Intent(AdminRemoveService.this, AdminWelcomePage.class));
+            }
+        });
+    }
+
+
 
     private void setupUIViews() {
         pageInfoText = (TextView)findViewById(R.id.tvCreateServiceText);
@@ -34,7 +68,7 @@ public class AdminRemoveService extends AppCompatActivity {
         stateInfoText = (TextView)findViewById(R.id.tvServiceState);
         stateOfService = (CheckBox)findViewById(R.id.toggleServiceButton);
 
-        confirmCreationOfService = (Button)findViewById(R.id.confirmCreationButton);
+        confirmRemovalOfService = (Button)findViewById(R.id.confirmCreationButton);
         backToAdminWelcome = (Button)findViewById(R.id.backButton);
     }
 

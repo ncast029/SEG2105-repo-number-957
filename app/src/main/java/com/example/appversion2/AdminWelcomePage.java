@@ -26,24 +26,26 @@ public class AdminWelcomePage extends AppCompatActivity {
         welcome = getIntent().getExtras().getString("Value");
         welcomeAdmin.setText("Welcome " + welcome + ", you are logged in as admin.");
 
+        setupUIViews();
+
         create_Service_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminCreateService.this, MainActivity.class));
+                startActivity(new Intent(AdminWelcomePage.this, AdminCreateService.class));
             }
         });
 
         edit_service_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminEditService.this, MainActivity.class));
+                startActivity(new Intent(AdminWelcomePage.this, AdminEditService.class));
             }
         });
 
         remove_service_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminRemoveService.this, MainActivity.class));
+                startActivity(new Intent(AdminWelcomePage.this, AdminRemoveService.class));
             }
         });
     }

@@ -21,12 +21,47 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AdminEditService extends AppCompatActivity {
 
-    private Button confirmCreationOfService, backToAdminWelcome;
+    private Button confirmEditOfService, backToAdminWelcome;
     private TextView pageInfoText, formInformation, documentInformation;
     private CheckBox firstName, secondName, dateOfBirth, address, licenseType, proofOfResidence, ProofOfStatus, photoOfTheCustomers;
     private EditText serviceName;
     private String serviceNameString;
     private FirebaseAuth firebaseAuth;
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_admin_create_service_page);
+        setupUIViews();
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        confirmEditOfService.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if(validate())
+                {
+                    //Find section of firebase change respectively
+                }
+            }
+        };
+
+        backToAdminWelcome.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(new Intent(AdminEditService.this, AdminWelcomePage.class));
+            }
+        });
+    }
+
+
 
     private void setupUIViews() {
         pageInfoText = (TextView)findViewById(R.id.tvCreateServiceText);
@@ -43,7 +78,7 @@ public class AdminEditService extends AppCompatActivity {
         ProofOfStatus = (CheckBox)findViewById(R.id.ProofOfStatusButton);
         photoOfTheCustomers = (CheckBox)findViewById(R.id.PhotoButton);
 
-        confirmCreationOfService = (Button)findViewById(R.id.confirmCreationButton);
+        confirmEditOfService = (Button)findViewById(R.id.confirmCreationButton);
         backToAdminWelcome = (Button)findViewById(R.id.backButton);
     }
 
@@ -60,4 +95,23 @@ public class AdminEditService extends AppCompatActivity {
         }
         return result;
     }
+
+    /*
+    private void editExistingService()
+    {
+
+    }
+*/
+/*
+    private void sendUserData() {
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
+        ServiceProfile newService = new ServiceProfile(serviceNameString, firstName.isChecked(), secondName.isChecked(), dateOfBirth.isChecked(),
+                address.isChecked(), licenseType.isChecked(), proofOfResidence.isChecked(), ProofOfStatus.isChecked(),
+                photoOfTheCustomers.isChecked());
+        myRef.setValue(newService);
+    }
+ */
+
 }
+
