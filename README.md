@@ -25,9 +25,25 @@ Patel, Sonya - 300124330
 Repository Link: https://github.com/SEG2105-uottawa/project_gr26_300060213_300056623_300071145_300124330
 
 ***
+
 Customer User: kevin@gmail.com / som12345
 
 Admin User: Admin / admin
 ***
 
-   
+Deliverable 2:
+Admin related functionality is implemented. 
+Add, edit, and delete services are offered by the Service Novigrad. 
+All the information necessary is provided. 
+In addition we have aimed to deliver on deleting Service Novigrad branches. 
+
+*** 
+
+The App work was very dilligently executed by Nicolas, with strong support from Tomas and Sonya. 
+UML Diagram was done by Adi. 
+
+***
+
+Repoitory Link: https://github.com/SEG2105-uottawa/project_gr26_300060213_300056623_300071145_300124330
+
+***
