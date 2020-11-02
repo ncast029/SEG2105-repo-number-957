@@ -23,8 +23,8 @@ public class AdminWelcomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_welcome_page);
         welcomeAdmin = findViewById(R.id.tvWelcomeAdmin);
-        welcome = getIntent().getExtras().getString("Value");
-        welcomeAdmin.setText("Welcome " + welcome + ", you are logged in as admin.");
+        //welcome = getIntent().getExtras().getString("Value");
+        welcomeAdmin.setText("Welcome admin.");
 
         setupUIViews();
 

@@ -116,20 +116,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void validateAdmin(String userName, String userPassword) {
         if(userName.equals("Admin") && userPassword.equals("admin")) {
+            //userRegistration.setText("This is a test");
             Intent intent = new Intent(MainActivity.this, AdminWelcomePage.class);
             /*name = Name.getText().toString();
             intent.putExtra("Value", name);*/
             startActivity(intent);
-            finish();
-        }
-        else {
-            counter--;
-
-            Info.setText("No of attempts remaining: " + String.valueOf(counter));
-
-            if(counter == 0) {
-                Login.setEnabled(false);
-            }
+            //finish();
         }
     }
 
@@ -177,6 +169,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void validate(String userEmail, String userPassword) {
 
+        if (userEmail.equals("Admin") && userPassword.equals("admin")) {
+            validateAdmin("Admin", "admin");
+        } else {
+
         progressDialog.setMessage("Loading, please wait.");
         progressDialog.show();
 
@@ -186,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Toast.makeText(MainActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+                    finish();
                 } else {
                     Toast.makeText(MainActivity.this, "Login Failed.", Toast.LENGTH_SHORT).show();
                     counter--;
@@ -203,6 +200,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-    }
+    }}
 
 }

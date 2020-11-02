@@ -30,9 +30,10 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
         welcome = (TextView) findViewById(R.id.tvWelcomeName);
         role = (TextView) findViewById(R.id.tvWelcomeRole);
-        continueButton = (Button) findViewById(R.id.btnContinue);
+        //continueButton = (Button) findViewById(R.id.btnContinue);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -43,8 +44,9 @@ public class WelcomeActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                final UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
-                welcome.setText("Welcome " + userProfile.getUserFirstName());
+
+                //final UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
+                /*welcome.setText("Welcome " + userProfile.getUserFirstName());
                 role.setText("You are logged in as " + userProfile.getUserRole());
 
 
@@ -67,7 +69,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
                         }
                     }
-                });
+                });*/
 
 
             }
@@ -103,14 +105,14 @@ public class WelcomeActivity extends AppCompatActivity {
         HC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, HealthCardForm.class));
             }
         });
         Button PI = (Button) findViewById(R.id.PIbtn);
         PI.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, PhotoIdForm.class));
             }
         });
 
