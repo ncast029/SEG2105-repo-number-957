@@ -3,7 +3,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class ServiceProfile extends AppCompatActivity {
+public class ServiceProfile {
 
     private String serviceName;
     private boolean firstName, secondName, dateOfBirth, address, licenseType, proofOfResidence, proofOfStatus, photoOfTheCustomer;
@@ -27,12 +27,12 @@ public class ServiceProfile extends AppCompatActivity {
         serviceArrayList.add(this);
     }
 
-    public ArrayList<ServiceProfile> getArrayList()
+    public static ArrayList<ServiceProfile> getArrayList()
     {
         return serviceArrayList;
     }
 
-    public void setArrayList(ArrayList<ServiceProfile> newServiceArrayList)
+    public static void setArrayList(ArrayList<ServiceProfile> newServiceArrayList)
     {
         serviceArrayList = newServiceArrayList;
     }
@@ -44,40 +44,42 @@ public class ServiceProfile extends AppCompatActivity {
         else { return null; } }
 
     public String getSecondName() {
-        if(firstName) { return "Second Name"; }
+        if(secondName) { return "Second Name"; }
         else { return null; } }
 
     public String getDateOfBirth() {
-        if(firstName) { return "Date of Birth"; }
+        if(dateOfBirth) { return "Date of Birth"; }
         else { return null; } }
 
     public String getAddress() {
-        if(firstName) { return "Address"; }
+        if(address) { return "Address"; }
         else { return null; } }
 
     public String getLicenseType() {
-        if(firstName) { return "License Type"; }
+        if(licenseType) { return "License Type"; }
         else { return null; } }
 
     public String getProofOfresidence() {
-        if(firstName) { return "Proof of Residence"; }
+        if(proofOfResidence) { return "Proof of Residence"; }
         else { return null; } }
 
     public String getProofOfStatus() {
-        if(firstName) { return "Proof of Status"; }
+        if(proofOfStatus) { return "Proof of Status"; }
         else { return null; } }
 
-    public String getDateOfBirth() {
-        if(firstName) { return "Photo of the Customer"; }
+    public String getPhotoOfTheCustomer() {
+        if (photoOfTheCustomer) { return "Photo of the Customer"; }
         else { return null; } }
 
-    public boolean setFirstName(boolean state) {firstName = state;}
-    public boolean setSecondName(boolean state) {return secondName = state;}
-    public boolean setDateOfBirth(boolean state) {return dateOfBirth = state;}
-    public boolean setAddress(boolean state) {return address = state;}
-    public boolean setLicenseType(boolean state) {return licenseType = state;}
-    public boolean setProofOfresidence(boolean state) {return proofOfResidence = state;}
-    public boolean setProofOfStatus(boolean state) {return proofOfStatus = state;}
-    public boolean setphotoOfTheCustomer(boolean state) {return photoOfTheCustomer = state;}
+
+
+    public void setFirstName(boolean state) {firstName = state;}
+    public void setSecondName(boolean state) {secondName = state;}
+    public void setDateOfBirth(boolean state) {dateOfBirth = state;}
+    public void setAddress(boolean state) {address = state;}
+    public void setLicenseType(boolean state) {licenseType = state;}
+    public void setProofOfresidence(boolean state) {proofOfResidence = state;}
+    public void setProofOfStatus(boolean state) {proofOfStatus = state;}
+    public void setphotoOfTheCustomer(boolean state) {photoOfTheCustomer = state;}
 
 }//end serviceProfile

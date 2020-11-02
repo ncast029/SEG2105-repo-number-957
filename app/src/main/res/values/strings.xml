@@ -10,4 +10,5 @@
     <string name="submit">Submit</string>
     <string name="required_documents">Required Documents</string>
     <string name="image">Image</string>
+    <string name="proof_of_status">Proof of Status</string>
 </resources>

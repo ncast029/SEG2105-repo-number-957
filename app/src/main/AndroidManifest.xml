@@ -28,6 +28,15 @@
                 <action android:name="android.intent.action.ACTION_VIEW" />
             </intent-filter>
         </activity>
+        <activity android:name=".HealthCardForm"/>
+        <activity android:name=".PhotoIdForm"/>
+        <activity android:name=".AdminCreateService" />
+        <activity android:name=".AdminEditService" />
+        <activity android:name=".AdminRemoveService" />
+        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".WelcomeActivity" />
+        <!--<activity android:name=".CustomForm"/>-->
+        <activity android:name=".Popup" />
 
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

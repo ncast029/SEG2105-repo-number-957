@@ -41,7 +41,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.File;
 import java.util.ArrayList;
 
-public class DriversLicense extends AppCompatActivity {
+public class HealthCardForm extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private String rate;
@@ -56,7 +56,7 @@ public class DriversLicense extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         rate = "120.00";
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_driver_license_registration);
+        setContentView(R.layout.activity_health_card_registration);
 
         Button helpButton = (Button) findViewById(R.id.hlpbtn);
         helpButton.setOnClickListener(new View.OnClickListener() {
@@ -125,18 +125,7 @@ public class DriversLicense extends AppCompatActivity {
         });
         */
 
-
-
-        /*
-        Button fileButton = (Button) findViewById(R.id.filebtn);
-        fileButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(final View view) {
-
-            }
-        });
-        */
-
-        final ServiceProfile details = ServiceProfile.getArrayList().get(0);
+        final ServiceProfile details = ServiceProfile.getArrayList().get(1);
         /*if (details.getFirstName() != null) {
 
         }
@@ -148,6 +137,9 @@ public class DriversLicense extends AppCompatActivity {
         }
         if ( details.getAddress() == null ) {
             ((EditText)findViewById(R.id.addrField)).setVisibility(View.INVISIBLE);
+        }
+        if ( details.getLicenseType() == null ) {
+            ((RadioGroup)findViewById(R.id.radioGroup)).setVisibility(View.INVISIBLE);
         }
         if ( details.getPhotoOfTheCustomer() == null) {
             Popup.setphotob(false);
@@ -166,24 +158,31 @@ public class DriversLicense extends AppCompatActivity {
         }
 
 
+        /*
+        Button fileButton = (Button) findViewById(R.id.filebtn);
+        fileButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(final View view) {
+
+            }
+        });
+        */
+
         Button submitButton = (Button) findViewById(R.id.btnSubmit);
         submitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View view) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(DriversLicense.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(HealthCardForm.this);
                 builder.setCancelable(true);
-                builder.setTitle("Confirm Driver's License Form Submission");
+                builder.setTitle("Confirm Health Card Form Submission");
                 builder.setMessage("Once your application is processed $" + rate + " will be charged to your account.");
                 builder.setPositiveButton("Confirm",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                RadioGroup rG = (RadioGroup) findViewById(R.id.radioGroup);
-                                int checkedButton = rG.getCheckedRadioButtonId();
                                 String dob = ((EditText)findViewById(R.id.dobField)).getText().toString();
                                 String addr = ((EditText)findViewById(R.id.addrField)).getText().toString();
-                                if ((!dobValidate(dob) && details.getDateOfBirth() != null) || (!addrValidate(addr) && details.getAddress() != null) || checkedButton == -1) {
-                                    AlertDialog.Builder builder2 = new AlertDialog.Builder(DriversLicense.this);
+                                if ((!dobValidate(dob) && details.getDateOfBirth() != null) || (!addrValidate(addr) && details.getAddress() != null)) {
+                                    AlertDialog.Builder builder2 = new AlertDialog.Builder(HealthCardForm.this);
                                     builder2.setCancelable(false);
                                     builder2.setTitle("ERROR");
                                     builder2.setMessage("Your input was not valid. Please try again, or go back to a different page.");
@@ -192,20 +191,19 @@ public class DriversLicense extends AppCompatActivity {
                                     AlertDialog dialog2 = builder2.create();
                                     dialog2.show();
                                 } else {
-                                    String rbv = ((RadioButton) findViewById(checkedButton)).getText().toString();
                                     String success = "";
                                     if (details.getDateOfBirth() != null && details.getAddress() != null) {
-                                        success = submitForm(dob, addr, rbv);
+                                        success = submitForm(dob, addr);
                                     } else if (details.getDateOfBirth() != null) {
-                                        success = submitForm(dob, "", rbv);
+                                        success = submitForm(dob, "");
                                     } else if (details.getAddress() != null) {
-                                        success = submitForm("", addr, rbv);
+                                        success = submitForm("", addr);
                                     } else {
-                                        success = submitForm("", "", rbv);
+                                        success = submitForm("", "");
                                     }
-
+                                    //String success = submitForm(dob, addr);
                                     if (!success.equals("")) {
-                                        AlertDialog.Builder builder2 = new AlertDialog.Builder(DriversLicense.this);
+                                        AlertDialog.Builder builder2 = new AlertDialog.Builder(HealthCardForm.this);
                                         builder2.setCancelable(false);
                                         builder2.setTitle("ERROR");
                                         //builder2.setMessage(success);
@@ -238,13 +236,13 @@ public class DriversLicense extends AppCompatActivity {
         });
     }
 
-    private String submitForm(String dob, String address, String gLevel) {
+    private String submitForm(String dob, String address) {
         try {
             FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
 
-            FormSubmission form = new DriversForm( gLevel, /*getIntent().getExtras().getString("FirstName")*/ "", /*getIntent().getExtras().getString("LastName")*/ "", dob, address, "Driver's License");
+            FormSubmission form = new FormSubmission(/*getIntent().getExtras().getString("FirstName")*/ "", /*getIntent().getExtras().getString("LastName")*/ "", dob, address, "Health Card");
             myRef.setValue(form);
             return "";
         } catch (Exception e) {

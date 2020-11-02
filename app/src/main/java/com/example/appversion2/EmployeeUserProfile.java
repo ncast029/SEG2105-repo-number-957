@@ -1,6 +1,6 @@
 package com.example.appversion2;
 
-public class EmployeeUserProfile extends Profile {
+public class EmployeeUserProfile extends UserProfile {
     private String employeeNumber;
 
     public EmployeeUserProfile(String employeeFirstName, String employeeLastName, String employeeEmail, String employeePassword, String employeeNumber, String employeeRole) {
@@ -13,23 +13,23 @@ public class EmployeeUserProfile extends Profile {
     }
 
     public String getEmployeeFirstName() {
-        return super.getFirstName();
+        return super.getUserFirstName();
     }
 
     public String getEmployeeLastName() {
-        return super.getLastName();
+        return super.getUserLastName();
     }
 
     public String getEmployeeEmail() {
-        return super.getEmail();
+        return super.getUserEmail();
     }
 
     public String getEmployeePassword() {
-        return super.getPassword();
+        return super.getUserPassword();
     }
 
     public String getEmployeeRole() {
-        return super.getRole();
+        return super.getUserRole();
     }
 
 }

@@ -58,7 +58,7 @@
             android:text="First name" />
 
         <CheckBox
-            android:id="@+id/Last name"
+            android:id="@+id/LastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Last name" />
@@ -94,10 +94,10 @@
             android:text="Proof of residence" />
 
         <CheckBox
-            android:id="@+id/Proof of Status"
+            android:id="@+id/ProofofStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Proof of Status" />
+            android:text="@string/proof_of_status" />
 
         <CheckBox
             android:id="@+id/PhotoButton"

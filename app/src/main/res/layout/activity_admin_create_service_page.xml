@@ -76,7 +76,7 @@
             android:text="Address" />
 
         <CheckBox
-            android:id="@+id/License Type"
+            android:id="@+id/LicenseType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="License Type" />
@@ -112,7 +112,7 @@
             android:text="confirm creation of Service" />
 
         <Button
-            android:id="@+id/Go back (states not saved)"
+            android:id="@+id/Gobackstatesnotsaved"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Go back (states not saved)" />

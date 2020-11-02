@@ -1,5 +1,6 @@
 package com.example.appversion2;
 
+import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,9 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 
-public class AdminEditService extends ServiceProfile {
+public class AdminEditService extends AppCompatActivity {
 
     private Button confirmEditOfService, backToAdminWelcome;
     private TextView pageInfoText, formInformation, documentInformation;
@@ -19,11 +22,11 @@ public class AdminEditService extends ServiceProfile {
     private EditText serviceName;
     private String serviceNameString;
 
-
+    /*
     public AdminEditService(String serviceName, boolean firstName, boolean secondName, boolean dateOfBirth, boolean address, boolean licenseType, boolean proofOfResidence, boolean ProofOfStatus, boolean photoOfTheCustomer)
     {
         super(serviceName, firstName, secondName, dateOfBirth, address, licenseType, proofOfResidence, ProofOfStatus, photoOfTheCustomer);
-    }
+    }*/
 
 
     @Override
@@ -41,7 +44,7 @@ public class AdminEditService extends ServiceProfile {
                 if(validate())
                 {
                     //Find service and edit it.
-                    ArrayList<ServiceProfile> serviceArrayList = getArrayList();
+                    ArrayList<ServiceProfile> serviceArrayList = ServiceProfile.getArrayList();
 
                     for(int i = 0; i < serviceArrayList.size(); i++)
                     {
@@ -57,10 +60,10 @@ public class AdminEditService extends ServiceProfile {
                             serviceArrayList.get(i).setphotoOfTheCustomer(photoOfTheCustomers.isChecked());
                         }
                     }
-                    setArrayList(serviceArrayList);
+                    ServiceProfile.setArrayList(serviceArrayList);
                 }
             }
-        };
+        });
 
         backToAdminWelcome.setOnClickListener(new View.OnClickListener()
         {
@@ -99,13 +102,12 @@ public class AdminEditService extends ServiceProfile {
         serviceNameString = serviceName.getText().toString();
 
 
-        ArrayList<ServiceProfile> serviceArrayList = getArrayList();
+        ArrayList<ServiceProfile> serviceArrayList = ServiceProfile.getArrayList();
         for(int i = 0; i < serviceArrayList.size(); i++)
         {
             if(serviceArrayList.get(i).getServiceName().equals(serviceNameString))
             {
                 result = false;
-                continue;
             }
         }
 

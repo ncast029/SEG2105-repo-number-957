@@ -9,9 +9,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 
-public class AdminCreateService extends ServiceProfile {
+public class AdminCreateService extends AppCompatActivity {
 
     private Button confirmCreationOfService, backToAdminWelcome;
     private TextView pageInfoText, formInformation, documentInformation;
@@ -19,10 +21,10 @@ public class AdminCreateService extends ServiceProfile {
     private EditText serviceName;
     private String serviceNameString;
 
-    public AdminCreateService(String serviceName, boolean firstName, boolean secondName, boolean dateOfBirth, boolean address, boolean licenseType, boolean proofOfResidence, boolean ProofOfStatus, boolean photoOfTheCustomer)
-    {
-        super(serviceName, firstName, secondName, dateOfBirth, address, licenseType, proofOfResidence, ProofOfStatus, photoOfTheCustomer);
-    }
+    //public AdminCreateService(String serviceName, boolean firstName, boolean secondName, boolean dateOfBirth, boolean address, boolean licenseType, boolean proofOfResidence, boolean ProofOfStatus, boolean photoOfTheCustomer)
+    //{
+       // super(serviceName, firstName, secondName, dateOfBirth, address, licenseType, proofOfResidence, ProofOfStatus, photoOfTheCustomer);
+    //}
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -30,6 +32,8 @@ public class AdminCreateService extends ServiceProfile {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_create_service_page);
         setupUIViews();
+
+
 
         confirmCreationOfService.setOnClickListener(new View.OnClickListener()
         {
@@ -43,7 +47,7 @@ public class AdminCreateService extends ServiceProfile {
                             ProofOfStatus.isChecked(), photoOfTheCustomers.isChecked());
                 }
             }
-        };
+        });
 
         backToAdminWelcome.setOnClickListener(new View.OnClickListener()
         {
@@ -79,13 +83,12 @@ public class AdminCreateService extends ServiceProfile {
         Boolean singular = true;
         serviceNameString = serviceName.getText().toString();
 
-        ArrayList<ServiceProfile> serviceArrayList = getArrayList();
+        ArrayList<ServiceProfile> serviceArrayList = ServiceProfile.getArrayList();
         for(int i = 0; i < serviceArrayList.size(); i++)
         {
             if(serviceArrayList.get(i).getServiceName().equals(serviceNameString))
             {
                 result = false;
-                continue;
             }
         }
 

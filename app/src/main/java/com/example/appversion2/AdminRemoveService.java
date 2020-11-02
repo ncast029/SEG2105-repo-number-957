@@ -9,19 +9,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 
-public class AdminRemoveService extends ServiceProfile {
+public class AdminRemoveService extends AppCompatActivity {
 
     private Button confirmRemovalOfService, backToAdminWelcome;
     private TextView pageInfoText;
     private EditText serviceName;
     private String serviceNameString;
 
+    /*
     public AdminRemoveService(String serviceName, boolean firstName, boolean secondName, boolean dateOfBirth, boolean address, boolean licenseType, boolean proofOfResidence, boolean ProofOfStatus, boolean photoOfTheCustomer)
     {
         super(serviceName, firstName, secondName, dateOfBirth, address, licenseType, proofOfResidence, ProofOfStatus, photoOfTheCustomer);
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,7 +41,7 @@ public class AdminRemoveService extends ServiceProfile {
                 if(validate())
                 {
                     //Delete service called (name of service)
-                    ArrayList<ServiceProfile> serviceArrayList = getArrayList();
+                    ArrayList<ServiceProfile> serviceArrayList = ServiceProfile.getArrayList();
 
                     for(int i = 0; i < serviceArrayList.size(); i++)
                     {
@@ -47,10 +50,9 @@ public class AdminRemoveService extends ServiceProfile {
                             serviceArrayList.remove(i);
                         }
                     }
-                    setArrayList(serviceArrayList);
                 }
             }
-        };
+        });
 
         backToAdminWelcome.setOnClickListener(new View.OnClickListener()
         {
@@ -73,17 +75,16 @@ public class AdminRemoveService extends ServiceProfile {
     }
 
     private Boolean validate() {
-        Boolean result = false;
-        Boolean singular = true;
+        boolean result = false;
+        boolean singular = true;
         serviceNameString = serviceName.getText().toString();
 
-        ArrayList<ServiceProfile> serviceArrayList = getArrayList();
+        ArrayList<ServiceProfile> serviceArrayList = ServiceProfile.getArrayList();
         for(int i = 0; i < serviceArrayList.size(); i++)
         {
             if(serviceArrayList.get(i).getServiceName().equals(serviceNameString))
             {
                 result = false;
-                continue;
             }
         }
 
