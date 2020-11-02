@@ -25,6 +25,8 @@ Patel, Sonya - 300124330
 Repository Link: https://github.com/SEG2105-uottawa/project_gr26_300060213_300056623_300071145_300124330
 
 ***
-
+Admin User: Admin / admin
+Customer User: kevin@gmail.com / som12345
+***
 
    
