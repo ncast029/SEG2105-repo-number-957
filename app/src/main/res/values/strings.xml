@@ -11,4 +11,7 @@
     <string name="required_documents">Required Documents</string>
     <string name="image">Image</string>
     <string name="proof_of_status">Proof of Status</string>
+    <string name="please_upload_a_proof_of_residence_such_as_a_bank_statement_or_hydro_bill_with_your_address">Please upload a proof of residence such as a bank statement or hydro bill with your address.</string>
+    <string name="health_card_form">Health Card Form</string>
+    <string name="photo_id_form">Photo Id Form</string>
 </resources>

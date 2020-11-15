@@ -88,7 +88,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/etPassword" />
 
-    <TextView
+    <Button
         android:id="@+id/tvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -129,32 +129,38 @@
         app:layout_constraintVertical_bias="0.0" />
 
 
-    <Spinner
-        android:id="@+id/spinRole"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/et_bg"
-        android:spinnerMode="dropdown"
-        android:textColorHint="@color/login_form_details"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword"
-        app:layout_constraintVertical_bias="0.228" />
-
     <TextView
         android:id="@+id/tvChooseRole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Choose User Type."
         android:textColor="@color/login_form_details_medium"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/spinRole"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCharacters" />
+
+    <RadioGroup
+        android:id="@+id/roleGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvChooseRole"
+        app:layout_constraintTop_toBottomOf="@+id/tvCharacters" >
+
+        <RadioButton
+            android:id="@+id/radioCustomer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Customer" />
+
+        <RadioButton
+            android:id="@+id/radioEmployee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Employee" />
+    </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

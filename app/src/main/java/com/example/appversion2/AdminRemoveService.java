@@ -1,5 +1,6 @@
 package com.example.appversion2;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,10 +17,9 @@ import java.util.ArrayList;
 public class AdminRemoveService extends AppCompatActivity {
 
     private Button confirmRemovalOfService, backToAdminWelcome;
-    private TextView pageInfoText;
     private EditText serviceName;
     private String serviceNameString;
-
+    Context temp;
     /*
     public AdminRemoveService(String serviceName, boolean firstName, boolean secondName, boolean dateOfBirth, boolean address, boolean licenseType, boolean proofOfResidence, boolean ProofOfStatus, boolean photoOfTheCustomer)
     {
@@ -30,7 +30,7 @@ public class AdminRemoveService extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_create_service_page);
+        setContentView(R.layout.activity_admin_remove_service_page);
         setupUIViews();
 
         confirmRemovalOfService.setOnClickListener(new View.OnClickListener()
@@ -50,6 +50,9 @@ public class AdminRemoveService extends AppCompatActivity {
                             serviceArrayList.remove(i);
                         }
                     }
+                    Toast.makeText(temp, "Service change successful", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(AdminRemoveService.this, AdminWelcomePage.class));
+                    finish();
                 }
             }
         });
@@ -67,16 +70,14 @@ public class AdminRemoveService extends AppCompatActivity {
 
 
     private void setupUIViews() {
-        pageInfoText = (TextView)findViewById(R.id.tvCreateServiceText);
         serviceName = (EditText)findViewById(R.id.etServiceName);
 
-        confirmRemovalOfService = (Button)findViewById(R.id.confirmCreationButton);
-        backToAdminWelcome = (Button)findViewById(R.id.backButton);
+        confirmRemovalOfService = (Button)findViewById(R.id.ConfirmRemoveService);
+        backToAdminWelcome = (Button)findViewById(R.id.backToAdminButton);
     }
 
     private Boolean validate() {
         boolean result = false;
-        boolean singular = true;
         serviceNameString = serviceName.getText().toString();
 
         ArrayList<ServiceProfile> serviceArrayList = ServiceProfile.getArrayList();
@@ -84,21 +85,12 @@ public class AdminRemoveService extends AppCompatActivity {
         {
             if(serviceArrayList.get(i).getServiceName().equals(serviceNameString))
             {
-                result = false;
+                result = true;
             }
         }
 
         if(serviceNameString.isEmpty()) {
-            Toast.makeText(this, "Please make sure to name your service!", Toast.LENGTH_SHORT).show();
-        }
-        else if(!singular)
-        {
-            Toast.makeText(this, "Service name already in use. Please choose a new name!", Toast.LENGTH_SHORT).show();
-
-        }
-        else
-        {
-            result = true;
+            Toast.makeText(this, "Please provide a service name", Toast.LENGTH_SHORT).show();
         }
         return result;
     }

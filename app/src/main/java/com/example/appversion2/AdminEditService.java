@@ -1,6 +1,7 @@
 package com.example.appversion2;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,10 +18,10 @@ import java.util.ArrayList;
 public class AdminEditService extends AppCompatActivity {
 
     private Button confirmEditOfService, backToAdminWelcome;
-    private TextView pageInfoText, formInformation, documentInformation;
     private CheckBox firstName, secondName, dateOfBirth, address, licenseType, proofOfResidence, ProofOfStatus, photoOfTheCustomers;
     private EditText serviceName;
     private String serviceNameString;
+    Context temp;
 
     /*
     public AdminEditService(String serviceName, boolean firstName, boolean secondName, boolean dateOfBirth, boolean address, boolean licenseType, boolean proofOfResidence, boolean ProofOfStatus, boolean photoOfTheCustomer)
@@ -33,15 +34,16 @@ public class AdminEditService extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_create_service_page);
+        setContentView(R.layout.activity_admin_edit_service_page);
         setupUIViews();
+        temp = this;
 
         confirmEditOfService.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                if(validate())
+               if(validate())
                 {
                     //Find service and edit it.
                     ArrayList<ServiceProfile> serviceArrayList = ServiceProfile.getArrayList();
@@ -60,7 +62,9 @@ public class AdminEditService extends AppCompatActivity {
                             serviceArrayList.get(i).setphotoOfTheCustomer(photoOfTheCustomers.isChecked());
                         }
                     }
-                    ServiceProfile.setArrayList(serviceArrayList);
+                    Toast.makeText(temp, "Service change successful", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(AdminEditService.this, AdminWelcomePage.class));
+                    finish();
                 }
             }
         });
@@ -78,27 +82,23 @@ public class AdminEditService extends AppCompatActivity {
 
 
     private void setupUIViews() {
-        pageInfoText = (TextView)findViewById(R.id.tvCreateServiceText);
         serviceName = (EditText)findViewById(R.id.etServiceName);
-        formInformation = (TextView)findViewById(R.id.tvFormInformation);
         firstName = (CheckBox)findViewById(R.id.FirstNameButton);
         secondName = (CheckBox)findViewById(R.id.LastNameButton);
         dateOfBirth = (CheckBox)findViewById(R.id.DOBButton);
         address = (CheckBox)findViewById(R.id.addressButton);
         licenseType = (CheckBox)findViewById(R.id.LicenseTypeButton);
-
-        documentInformation = (TextView)findViewById(R.id.tvDocumentInformation);
         proofOfResidence = (CheckBox)findViewById(R.id.ProofOfResidenceButton);
         ProofOfStatus = (CheckBox)findViewById(R.id.ProofOfStatusButton);
         photoOfTheCustomers = (CheckBox)findViewById(R.id.PhotoButton);
 
-        confirmEditOfService = (Button)findViewById(R.id.confirmCreationButton);
-        backToAdminWelcome = (Button)findViewById(R.id.backButton);
+        confirmEditOfService = (Button)findViewById(R.id.ConfirmEditServiceButton);
+        backToAdminWelcome = (Button)findViewById(R.id.backToAdminButton);
     }
+
 
     private Boolean validate() {
         Boolean result = false;
-        Boolean singular = true;
         serviceNameString = serviceName.getText().toString();
 
 
@@ -107,21 +107,12 @@ public class AdminEditService extends AppCompatActivity {
         {
             if(serviceArrayList.get(i).getServiceName().equals(serviceNameString))
             {
-                result = false;
+                result = true;
             }
         }
 
         if(serviceNameString.isEmpty()) {
-            Toast.makeText(this, "Please make sure to name your service!", Toast.LENGTH_SHORT).show();
-        }
-        else if(!singular)
-        {
-            Toast.makeText(this, "Service name already in use. Please choose a new name!", Toast.LENGTH_SHORT).show();
-
-        }
-        else
-        {
-            result = true;
+            Toast.makeText(temp, "Please provide a service name to edit", Toast.LENGTH_SHORT).show();
         }
         return result;
     }

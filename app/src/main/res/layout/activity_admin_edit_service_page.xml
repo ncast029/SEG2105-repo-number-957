@@ -58,7 +58,7 @@
             android:text="First name" />
 
         <CheckBox
-            android:id="@+id/LastName"
+            android:id="@+id/LastNameButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Last name" />
@@ -70,7 +70,7 @@
             android:text="Date of Birth " />
 
         <CheckBox
-            android:id="@+id/AddressButton"
+            android:id="@+id/addressButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Address" />
@@ -112,7 +112,7 @@
             android:text="Confirm Edit Service" />
 
         <Button
-            android:id="@+id/backButton"
+            android:id="@+id/backToAdminButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Go back (states not saved)" />

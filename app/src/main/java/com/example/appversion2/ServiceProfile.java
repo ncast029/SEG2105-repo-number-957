@@ -12,7 +12,7 @@ public class ServiceProfile {
     private static ArrayList<ServiceProfile> serviceArrayList = new ArrayList<ServiceProfile>();
 
 
-    public ServiceProfile(String serviceName, boolean firstName, boolean secondName, boolean dateOfBirth, boolean address, boolean licenseType, boolean proofOfResidence, boolean ProofOfStatus, boolean photoOfTheCustomer)
+    public ServiceProfile(String serviceName, boolean firstName, boolean secondName, boolean dateOfBirth, boolean address, boolean licenseType, boolean proofOfResidence, boolean proofOfStatus, boolean photoOfTheCustomer)
     {
         this.serviceName = serviceName;
         this.firstName = firstName;
@@ -59,7 +59,7 @@ public class ServiceProfile {
         if(licenseType) { return "License Type"; }
         else { return null; } }
 
-    public String getProofOfresidence() {
+    public String getProofOfResidence() {
         if(proofOfResidence) { return "Proof of Residence"; }
         else { return null; } }
 

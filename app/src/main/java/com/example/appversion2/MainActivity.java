@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
             validateAdmin("Admin", "admin");
         } else {
 
-        progressDialog.setMessage("Loading, please wait.");
+        progressDialog.setMessage("It sometimes takes a long time to load the information from firebase, please wait.");
         progressDialog.show();
 
         firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

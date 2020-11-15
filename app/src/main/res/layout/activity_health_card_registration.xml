@@ -79,7 +79,7 @@
         android:background="@drawable/et_bg"
         android:gravity="center_horizontal"
         android:padding="16dp"
-        android:text="@string/driver_s_license_form"
+        android:text="@string/health_card_form"
         android:textAlignment="center"
         android:textColorHint="@color/login_form_details"
         app:layout_constraintEnd_toStartOf="@id/guideline_right"

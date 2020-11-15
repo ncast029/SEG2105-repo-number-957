@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -26,9 +28,11 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText userEmail;
     EditText userPassword;
     private Button register;
-    public static Spinner userRole;
+    //public static Spinner userRole;
     private FirebaseAuth  firebaseAuth;
     String firstname, lastname, password, email, role;
+    private Button goBack;
+    private RadioGroup userRole;
 
 
     @Override
@@ -69,6 +73,14 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             }
         });
+
+        goBack.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+            }
+        });
+
     }
 
     private void setupUIViews() {
@@ -77,8 +89,9 @@ public class RegistrationActivity extends AppCompatActivity {
         userEmail = (EditText)findViewById(R.id.etEmail);
         userPassword = (EditText)findViewById(R.id.etPassword);
         register = (Button)findViewById(R.id.btnRegister);
-        userRole = (Spinner)findViewById(R.id.spinRole);
-        //These seem important, don't forget about them
+        //userRole = (Spinner)findViewById(R.id.spinRole);
+        goBack = (Button)findViewById(R.id.tvLogin);
+        userRole = (RadioGroup) findViewById(R.id.roleGroup);
         //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.id.spinRole, R.layout.support_simple_spinner_dropdown_item);
         //userRole.setAdapter(adapter);
     }
@@ -90,15 +103,16 @@ public class RegistrationActivity extends AppCompatActivity {
         lastname = userLastName.getText().toString();
         password = userPassword.getText().toString();
         email = userEmail.getText().toString();
-        role = userRole.getSelectedItem().toString();
+        int checkedButton = userRole.getCheckedRadioButtonId();
 
-        if(firstname.isEmpty() || lastname.isEmpty() || password.isEmpty() || email.isEmpty()) {
+
+        if(firstname.isEmpty() || lastname.isEmpty() || password.isEmpty() || email.isEmpty() || checkedButton == -1) {
             Toast.makeText(this, "Please enter all your details.", Toast.LENGTH_SHORT).show();
         }
 
         else {
             result = true;
-
+            role = ((RadioButton) findViewById(checkedButton)).getText().toString();
         }
 
         return result;

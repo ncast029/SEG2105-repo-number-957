@@ -52,7 +52,7 @@
             android:text="Confirm remove service" />
 
         <Button
-            android:id="@+id/backButton"
+            android:id="@+id/backToAdminButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Go back (state not saved)" />

@@ -36,10 +36,10 @@
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".WelcomeActivity" />
         <!--<activity android:name=".CustomForm"/>-->
-        <activity android:name=".Popup" />
+        <activity android:name=".DocPopup" />
 
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA" />-->
 </manifest>

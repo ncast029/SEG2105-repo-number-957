@@ -3,38 +3,22 @@ package com.example.appversion2;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ProgressDialog;
-import android.os.Bundle;
-import android.content.Intent;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -52,11 +36,42 @@ public class DriversLicense extends AppCompatActivity {
     public void setRate(String newRate) {
         rate = newRate;
     }
+    String docs;
 
     protected void onCreate(Bundle savedInstanceState) {
         rate = "120.00";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_license_registration);
+
+        final ServiceProfile details = ServiceProfile.getArrayList().get(0);
+        /*if (details.getFirstName() != null) {
+
+        }
+        if (details.getSecondName() != null) {
+
+        }*/
+        if ( details.getDateOfBirth() == null ) {
+            ((EditText)findViewById(R.id.dobField)).setVisibility(View.INVISIBLE);
+        }
+        if ( details.getAddress() == null ) {
+            ((EditText)findViewById(R.id.addrField)).setVisibility(View.INVISIBLE);
+        }
+
+        String res = "Please upload a proof of residence.";
+        String stat = "Please upload a proof of status.";
+        String photo = "Please upload a photo of yourself.";
+        docs = "";
+
+        if ( details.getProofOfResidence() != null ) {
+            docs += res;
+        }
+        if ( details.getProofOfStatus() != null ) {
+            docs += " " + stat;
+        }
+        if ( details.getPhotoOfTheCustomer() != null) {
+            docs += " " + photo;
+        }
+
 
         Button helpButton = (Button) findViewById(R.id.hlpbtn);
         helpButton.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +81,7 @@ public class DriversLicense extends AppCompatActivity {
                 LayoutInflater inflater = (LayoutInflater)
                         getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_window, null);
-
+                ((TextView) popupView.findViewById(R.id.doctextbox)).setText(docs);
                 // create the popup window
                 int width = LinearLayout.LayoutParams.WRAP_CONTENT;
                 int height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -136,34 +151,7 @@ public class DriversLicense extends AppCompatActivity {
         });
         */
 
-        final ServiceProfile details = ServiceProfile.getArrayList().get(0);
-        /*if (details.getFirstName() != null) {
 
-        }
-        if (details.getSecondName() != null) {
-
-        }*/
-        if ( details.getDateOfBirth() == null ) {
-            ((EditText)findViewById(R.id.dobField)).setVisibility(View.INVISIBLE);
-        }
-        if ( details.getAddress() == null ) {
-            ((EditText)findViewById(R.id.addrField)).setVisibility(View.INVISIBLE);
-        }
-        if ( details.getPhotoOfTheCustomer() == null) {
-            Popup.setphotob(false);
-        } else {
-            Popup.setphotob(true);
-        }
-        if ( details.getProofOfresidence() == null ) {
-            Popup.setresb(false);
-        } else {
-            Popup.setresb(true);
-        }
-        if ( details.getProofOfStatus() == null ) {
-            Popup.setstatb(false);
-        } else {
-            Popup.setstatb(true);
-        }
 
 
         Button submitButton = (Button) findViewById(R.id.btnSubmit);

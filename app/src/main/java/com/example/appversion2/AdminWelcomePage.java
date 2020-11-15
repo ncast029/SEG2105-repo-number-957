@@ -17,6 +17,7 @@ public class AdminWelcomePage extends AppCompatActivity {
     private Button create_Service_Button;
     private Button edit_service_button;
     private Button remove_service_button;
+    private Button logOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +49,24 @@ public class AdminWelcomePage extends AppCompatActivity {
                 startActivity(new Intent(AdminWelcomePage.this, AdminRemoveService.class));
             }
         });
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(AdminWelcomePage.this, MainActivity.class));
+                finish();
+
+            }
+                                  }
+
+        );
+
+
     }
 
     private void setupUIViews() {
         create_Service_Button = (Button)findViewById(R.id.CreateServiceButton);
         edit_service_button = (Button)findViewById(R.id.EditServiceButton);
         remove_service_button = (Button)findViewById(R.id.RemoveServiceButton);
+        logOut = (Button) findViewById(R.id.log_out_btn);
     }
 }
