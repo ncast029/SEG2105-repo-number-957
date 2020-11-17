@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.w3c.dom.Text;
 
 public class EmployeeRegistration extends AppCompatActivity {
-
+/*
     private String EmployeeRole = "Employee";
     private EditText EmployeeFirstName, EmployeeLastName, EmployeePassword, EmployeeNumber;
     public EditText EmployeeEmail;
@@ -109,5 +109,5 @@ public class EmployeeRegistration extends AppCompatActivity {
         DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
         EmployeeUserProfile employeeUserProfile = new EmployeeUserProfile(firstName, lastName, email, password, number, role);
         myRef.setValue(employeeUserProfile);
-    }
+    }*/
 }

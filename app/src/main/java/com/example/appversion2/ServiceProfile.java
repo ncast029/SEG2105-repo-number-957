@@ -9,7 +9,7 @@ public class ServiceProfile {
     private boolean firstName, secondName, dateOfBirth, address, licenseType, proofOfResidence, proofOfStatus, photoOfTheCustomer;
 
     //STATIC ARRAY LIST
-    private static ArrayList<ServiceProfile> serviceArrayList = new ArrayList<ServiceProfile>();
+    private static ArrayList<ServiceProfile> serviceArrayList;
 
 
     public ServiceProfile(String serviceName, boolean firstName, boolean secondName, boolean dateOfBirth, boolean address, boolean licenseType, boolean proofOfResidence, boolean proofOfStatus, boolean photoOfTheCustomer)
@@ -24,7 +24,6 @@ public class ServiceProfile {
         this.proofOfStatus = proofOfStatus;
         this.photoOfTheCustomer = photoOfTheCustomer;
 
-        serviceArrayList.add(this);
     }
 
     public static ArrayList<ServiceProfile> getArrayList()
@@ -78,8 +77,8 @@ public class ServiceProfile {
     public void setDateOfBirth(boolean state) {dateOfBirth = state;}
     public void setAddress(boolean state) {address = state;}
     public void setLicenseType(boolean state) {licenseType = state;}
-    public void setProofOfresidence(boolean state) {proofOfResidence = state;}
+    public void setProofOfResidence(boolean state) {proofOfResidence = state;}
     public void setProofOfStatus(boolean state) {proofOfStatus = state;}
-    public void setphotoOfTheCustomer(boolean state) {photoOfTheCustomer = state;}
+    public void setPhotoOfTheCustomer(boolean state) {photoOfTheCustomer = state;}
 
 }//end serviceProfile

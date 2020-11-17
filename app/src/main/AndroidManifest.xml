@@ -11,10 +11,13 @@
         android:theme="@style/AppTheme">
         <activity android:name=".AdminWelcomePage"></activity>
         <activity android:name=".CustomerWelcomePage" />
+        <activity android:name=".ProcessApplications" />
+        <activity android:name =".EditEmployees" />
         <activity android:name=".EmployeeWelcomePage" />
         <activity android:name=".CustomerRegistration" />
         <activity android:name=".EmployeeRegistration" />
         <activity android:name=".RegistrationOption" />
+        <activity android:name=".SetEmployeeNumber" />
         <activity android:name=".MainActivity">
 
             <intent-filter>
