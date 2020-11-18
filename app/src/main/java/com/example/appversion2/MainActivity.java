@@ -39,14 +39,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ArrayList<ServiceProfile> arr = new ArrayList<ServiceProfile>();
-        arr.add(new ServiceProfile("Driver's License", true, true, true, true, true, true, false, false));
-        arr.add(new ServiceProfile("Health Card", true, true, true, true, true, true, true, false));
-        arr.add(new ServiceProfile("Photo ID", true, true, true, true, true, true, false, true));
-        ServiceProfile.setArrayList(
-                arr
-        );
+
+        if (ServiceProfile.getArrayList() == null) {
+            ArrayList<ServiceProfile> arr = new ArrayList<ServiceProfile>();
+            arr.add(new ServiceProfile("Driver's License", true, true, true, true, true, true, false, false));
+            arr.add(new ServiceProfile("Health Card", true, true, true, true, true, true, true, false));
+            arr.add(new ServiceProfile("Photo ID", true, true, true, true, true, true, false, true));
+            ServiceProfile.setArrayList(
+                    arr
+            );
+        }
         setContentView(R.layout.activity_main);
+
+        if (EmployeeUserProfile.employees == null ) {
+            EmployeeUserProfile.employees = new ArrayList<EmployeeUserProfile>();
+        }
 
         //Name = (EditText)findViewById(R.id.etName);
         Email = (EditText)findViewById(R.id.etEmail);
@@ -176,30 +183,38 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.setMessage("It sometimes takes a long time to load the information from firebase, please wait.");
         progressDialog.show();
 
-        firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
-                    finish();
-                } else {
-                    Toast.makeText(MainActivity.this, "Login Failed.", Toast.LENGTH_SHORT).show();
-                    counter--;
-                    Info.setText("No of attempts remaining: " + counter);
-                    progressDialog.dismiss();
-                    if(counter == 0){
-                        Login.setEnabled(false);
+
+        if (EmployeeUserProfile.getEmployee(userEmail) != null && EmployeeUserProfile.getEmployee(userEmail).getEmployeePassword().equals(userPassword)) {
+            Toast.makeText(MainActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+            Intent temp = new Intent(MainActivity.this, EmployeeWelcomePage.class);
+            temp.putExtra("email", userEmail);
+            startActivity(temp);
+            finish();
+        } else {
+
+            firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(MainActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Login Failed.", Toast.LENGTH_SHORT).show();
+                        counter--;
+                        Info.setText("No of attempts remaining: " + counter);
+                        progressDialog.dismiss();
+                        if (counter == 0) {
+                            Login.setEnabled(false);
+                        }
                     }
+
                 }
 
-            }
 
+            });
 
-
-        });
-
-
+        }
     }}
 
 }

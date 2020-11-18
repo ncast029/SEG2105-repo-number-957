@@ -14,4 +14,12 @@
     <string name="please_upload_a_proof_of_residence_such_as_a_bank_statement_or_hydro_bill_with_your_address">Please upload a proof of residence such as a bank statement or hydro bill with your address.</string>
     <string name="health_card_form">Health Card Form</string>
     <string name="photo_id_form">Photo Id Form</string>
+    <string name="applications">Applications</string>
+    <string name="edit_info">Edit Info</string>
+    <string name="welcome_you_are_logged_in_as_an_employee">Welcome, ! You are logged in as an employee.</string>
+    <string name="log_out">Log Out</string>
+    <string name="your_account_has_no_employee_number_please_add_an_employee_number_now">Your account has no employee number. Please add an employee number now.</string>
+    <string name="go_back">Go Back</string>
+    <string name="you_should_not_see_this">You should not see this</string>
+    <string name="update">Update</string>
 </resources>
