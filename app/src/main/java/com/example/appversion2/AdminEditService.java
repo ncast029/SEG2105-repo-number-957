@@ -49,19 +49,8 @@ public class AdminEditService extends AppCompatActivity {
                     {
                         if(serviceArrayListForEdit.get(i).getServiceName().equals(serviceNameString))
                         {
-<<<<<<< HEAD
                             GlobalArrays.editServiceInArrayList(i, service);
                             break;
-=======
-                            serviceArrayList.get(i).setFirstName(firstName.isChecked());
-                            serviceArrayList.get(i).setSecondName(secondName.isChecked());
-                            serviceArrayList.get(i).setDateOfBirth(dateOfBirth.isChecked());
-                            serviceArrayList.get(i).setAddress(address.isChecked());
-                            serviceArrayList.get(i).setLicenseType(licenseType.isChecked());
-                            serviceArrayList.get(i).setProofOfResidence(proofOfResidence.isChecked());
-                            serviceArrayList.get(i).setProofOfStatus(ProofOfStatus.isChecked());
-                            serviceArrayList.get(i).setPhotoOfTheCustomer(photoOfTheCustomers.isChecked());
->>>>>>> 1ad4dafa312eabb3b6965673f1526ac24c42a84d
                         }
                     }
                     Toast.makeText(temp, "Sucessfully editted " + serviceNameString + " service.", Toast.LENGTH_SHORT).show();

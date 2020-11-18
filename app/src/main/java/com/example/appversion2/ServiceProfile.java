@@ -23,10 +23,7 @@ public class ServiceProfile {
         this.proofOfResidence = proofOfResidence;
         this.proofOfStatus = proofOfStatus;
         this.photoOfTheCustomer = photoOfTheCustomer;
-<<<<<<< HEAD
-=======
 
->>>>>>> 1ad4dafa312eabb3b6965673f1526ac24c42a84d
     }
 
     public static ArrayList<ServiceProfile> getArrayList()
