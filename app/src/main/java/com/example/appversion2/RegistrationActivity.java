@@ -76,7 +76,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         goBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                finish();
+                //finish();
                 startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
             }
         });

@@ -23,11 +23,7 @@ public class AdminEditService extends AppCompatActivity {
     private String serviceNameString;
     Context temp;
 
-    /*
-    public AdminEditService(String serviceName, boolean firstName, boolean secondName, boolean dateOfBirth, boolean address, boolean licenseType, boolean proofOfResidence, boolean ProofOfStatus, boolean photoOfTheCustomer)
-    {
-        super(serviceName, firstName, secondName, dateOfBirth, address, licenseType, proofOfResidence, ProofOfStatus, photoOfTheCustomer);
-    }*/
+    private static ArrayList<ServiceProfile> serviceArrayListForEdit = new ArrayList<ServiceProfile>();
 
 
     @Override
@@ -38,6 +34,8 @@ public class AdminEditService extends AppCompatActivity {
         setupUIViews();
         temp = this;
 
+        serviceArrayListForEdit = GlobalArrays.getServiceArrayList();
+
         confirmEditOfService.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -45,26 +43,19 @@ public class AdminEditService extends AppCompatActivity {
             {
                if(validate())
                 {
-                    //Find service and edit it.
-                    ArrayList<ServiceProfile> serviceArrayList = ServiceProfile.getArrayList();
+                    ServiceProfile service = new ServiceProfile(serviceNameString, firstName.isChecked(), secondName.isChecked(),
+                            dateOfBirth.isChecked(), address.isChecked(), licenseType.isChecked(), proofOfResidence.isChecked(),
+                            ProofOfStatus.isChecked(), photoOfTheCustomers.isChecked());
 
-                    for(int i = 0; i < serviceArrayList.size(); i++)
+                    for(int i = 0; i < serviceArrayListForEdit.size(); i++)
                     {
-                        if(serviceArrayList.get(i).getServiceName().equals(serviceNameString))
+                        if(serviceArrayListForEdit.get(i).getServiceName().equals(serviceNameString))
                         {
-                            serviceArrayList.get(i).setFirstName(firstName.isChecked());
-                            serviceArrayList.get(i).setSecondName(secondName.isChecked());
-                            serviceArrayList.get(i).setDateOfBirth(dateOfBirth.isChecked());
-                            serviceArrayList.get(i).setAddress(address.isChecked());
-                            serviceArrayList.get(i).setLicenseType(licenseType.isChecked());
-                            serviceArrayList.get(i).setProofOfresidence(proofOfResidence.isChecked());
-                            serviceArrayList.get(i).setProofOfStatus(ProofOfStatus.isChecked());
-                            serviceArrayList.get(i).setphotoOfTheCustomer(photoOfTheCustomers.isChecked());
+                            GlobalArrays.editServiceInArrayList(i, service);
+                            break;
                         }
                     }
-                    Toast.makeText(temp, "Service change successful", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(AdminEditService.this, AdminWelcomePage.class));
-                    finish();
+                    Toast.makeText(temp, "Sucessfully editted " + serviceNameString + " service.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -89,7 +80,7 @@ public class AdminEditService extends AppCompatActivity {
         address = (CheckBox)findViewById(R.id.addressButton);
         licenseType = (CheckBox)findViewById(R.id.LicenseTypeButton);
         proofOfResidence = (CheckBox)findViewById(R.id.ProofOfResidenceButton);
-        ProofOfStatus = (CheckBox)findViewById(R.id.ProofOfStatusButton);
+        ProofOfStatus = (CheckBox)findViewById(R.id.ProofofStatusButton);
         photoOfTheCustomers = (CheckBox)findViewById(R.id.PhotoButton);
 
         confirmEditOfService = (Button)findViewById(R.id.ConfirmEditServiceButton);
@@ -98,41 +89,24 @@ public class AdminEditService extends AppCompatActivity {
 
 
     private Boolean validate() {
-        Boolean result = false;
         serviceNameString = serviceName.getText().toString();
-
-
-        ArrayList<ServiceProfile> serviceArrayList = ServiceProfile.getArrayList();
-        for(int i = 0; i < serviceArrayList.size(); i++)
-        {
-            if(serviceArrayList.get(i).getServiceName().equals(serviceNameString))
-            {
-                result = true;
-            }
-        }
 
         if(serviceNameString.isEmpty()) {
             Toast.makeText(temp, "Please provide a service name to edit", Toast.LENGTH_SHORT).show();
+            return false;
         }
-        return result;
+        else
+        {
+            for(int i = 0; i < serviceArrayListForEdit.size(); i++)
+            {
+                if(serviceArrayListForEdit.get(i).getServiceName().equals(serviceNameString))
+                {
+                    return true;
+                }
+            }
+            Toast.makeText(temp, "Please provide a valid service name to edit", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
-
-    /*
-    private void editExistingService()
-    {
-
-    }
-*/
-/*
-    private void sendUserData() {
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
-        ServiceProfile newService = new ServiceProfile(serviceNameString, firstName.isChecked(), secondName.isChecked(), dateOfBirth.isChecked(),
-                address.isChecked(), licenseType.isChecked(), proofOfResidence.isChecked(), ProofOfStatus.isChecked(),
-                photoOfTheCustomers.isChecked());
-        myRef.setValue(newService);
-    }
- */
-
 }
 

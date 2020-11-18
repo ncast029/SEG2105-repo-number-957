@@ -23,8 +23,6 @@ public class ServiceProfile {
         this.proofOfResidence = proofOfResidence;
         this.proofOfStatus = proofOfStatus;
         this.photoOfTheCustomer = photoOfTheCustomer;
-
-        serviceArrayList.add(this);
     }
 
     public static ArrayList<ServiceProfile> getArrayList()
@@ -36,6 +34,12 @@ public class ServiceProfile {
     {
         serviceArrayList = newServiceArrayList;
     }
+
+    public static void addServiceToArrayList(ServiceProfile newService)
+    {
+        serviceArrayList.add(newService);
+    }
+
 
     public String getServiceName() { return serviceName; }
 
@@ -83,3 +87,41 @@ public class ServiceProfile {
     public void setphotoOfTheCustomer(boolean state) {photoOfTheCustomer = state;}
 
 }//end serviceProfile
+
+
+
+/*
+package com.example.appversion2;
+
+import java.util.ArrayList;
+
+public class ServiceArray {
+
+    private ArrayList<ServiceProfile> serviceArrayList = new ArrayList<ServiceProfile>(); //stores all services
+
+    public ServiceArray(ServiceProfile newService)
+    {
+        serviceArrayList.add(newService);
+    }
+
+    public ArrayList<ServiceProfile> getArrayOfServices() {
+        return serviceArrayList;
+    }
+
+    public void setArrayOfServices(ArrayList<ServiceProfile> newList) {
+        serviceArrayList = newList;
+    }
+
+    public void editService(int index, ServiceProfile newServiceProfile)
+    {
+        serviceArrayList.set(index, newServiceProfile);
+    }
+
+    public void removeService(int index)
+    {
+        serviceArrayList.remove(index);
+    }
+
+}
+
+ */

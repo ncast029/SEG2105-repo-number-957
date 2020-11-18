@@ -94,7 +94,7 @@
             android:text="Proof of residence" />
 
         <CheckBox
-            android:id="@+id/ProofofStatus"
+            android:id="@+id/ProofofStatusButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/proof_of_status" />

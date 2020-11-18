@@ -20,11 +20,8 @@ public class AdminRemoveService extends AppCompatActivity {
     private EditText serviceName;
     private String serviceNameString;
     Context temp;
-    /*
-    public AdminRemoveService(String serviceName, boolean firstName, boolean secondName, boolean dateOfBirth, boolean address, boolean licenseType, boolean proofOfResidence, boolean ProofOfStatus, boolean photoOfTheCustomer)
-    {
-        super(serviceName, firstName, secondName, dateOfBirth, address, licenseType, proofOfResidence, ProofOfStatus, photoOfTheCustomer);
-    }*/
+
+    private static ArrayList<ServiceProfile> serviceArrayListForRemove = new ArrayList<ServiceProfile>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,6 +29,9 @@ public class AdminRemoveService extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_remove_service_page);
         setupUIViews();
+        temp = this;
+
+        serviceArrayListForRemove = GlobalArrays.getServiceArrayList();
 
         confirmRemovalOfService.setOnClickListener(new View.OnClickListener()
         {
@@ -40,19 +40,15 @@ public class AdminRemoveService extends AppCompatActivity {
             {
                 if(validate())
                 {
-                    //Delete service called (name of service)
-                    ArrayList<ServiceProfile> serviceArrayList = ServiceProfile.getArrayList();
-
-                    for(int i = 0; i < serviceArrayList.size(); i++)
+                    for(int i = 0; i < serviceArrayListForRemove.size(); i++)
                     {
-                        if(serviceArrayList.get(i).getServiceName().equals(serviceNameString))
+                        if(serviceArrayListForRemove.get(i).getServiceName().equals(serviceNameString))
                         {
-                            serviceArrayList.remove(i);
+                            GlobalArrays.removeServiceFromArrayList(i);
+                            Toast.makeText(temp, "Sucessfully removed" + serviceNameString + " service.", Toast.LENGTH_SHORT).show();
+                            break;
                         }
                     }
-                    Toast.makeText(temp, "Service change successful", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(AdminRemoveService.this, AdminWelcomePage.class));
-                    finish();
                 }
             }
         });
@@ -77,21 +73,23 @@ public class AdminRemoveService extends AppCompatActivity {
     }
 
     private Boolean validate() {
-        boolean result = false;
         serviceNameString = serviceName.getText().toString();
 
-        ArrayList<ServiceProfile> serviceArrayList = ServiceProfile.getArrayList();
-        for(int i = 0; i < serviceArrayList.size(); i++)
-        {
-            if(serviceArrayList.get(i).getServiceName().equals(serviceNameString))
-            {
-                result = true;
-            }
-        }
-
         if(serviceNameString.isEmpty()) {
-            Toast.makeText(this, "Please provide a service name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(temp, "Please provide a service name to remove", Toast.LENGTH_SHORT).show();
+            return false;
         }
-        return result;
+        else
+        {
+            for(int i = 0; i < serviceArrayListForRemove.size(); i++)
+            {
+                if(serviceArrayListForRemove.get(i).getServiceName().equals(serviceNameString))
+                {
+                    return true;
+                }
+            }
+            Toast.makeText(temp, "Please provide a valid service name to remove", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 }
