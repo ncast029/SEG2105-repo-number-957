@@ -52,7 +52,7 @@ public class EmployeeWelcomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //startActivity(new Intent(EmployeeWelcomePage.this, EmployeeFormsPage.class));
+                startActivity(new Intent(EmployeeWelcomePage.this, ProcessApplications.class));
             }
         });
 

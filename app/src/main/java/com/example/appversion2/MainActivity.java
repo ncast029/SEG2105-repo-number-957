@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.content.Intent;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +20,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,15 +47,23 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<ServiceProfile> arr = new ArrayList<ServiceProfile>();
             arr.add(new ServiceProfile("Driver's License", true, true, true, true, true, true, false, false));
             arr.add(new ServiceProfile("Health Card", true, true, true, true, true, true, true, false));
-            arr.add(new ServiceProfile("Photo ID", true, true, true, true, true, true, false, true));
+            arr.add(new ServiceProfile("Photo Id", true, true, true, true, true, true, false, true));
             ServiceProfile.setArrayList(
                     arr
             );
         }
         setContentView(R.layout.activity_main);
 
-        if (EmployeeUserProfile.employees == null ) {
-            EmployeeUserProfile.employees = new ArrayList<EmployeeUserProfile>();
+        if ( GlobalArrays.employees == null ) {
+            GlobalArrays.employees = new ArrayList<EmployeeUserProfile>();
+            GlobalArrays.employees.add(new EmployeeUserProfile("Steve", "Jobs", "emp@email.com", "som12345", "12345"));
+
+        }
+
+        if ( GlobalArrays.forms == null ) {
+            GlobalArrays.forms = new ArrayList<FormSubmission>();
+            GlobalArrays.forms.add(new FormSubmission("Jason", "Ralph", "30/10/20", "This is my address", "Health Card"));
+            GlobalArrays.forms.add(new FormSubmission("Stella","Maeve","10/10/20", "This is not my address", "Photo Id"));
         }
 
         //Name = (EditText)findViewById(R.id.etName);

@@ -23,6 +23,11 @@ public class GlobalArrays
 
     public static void removeServiceFromArrayList(int index) { serviceArrayList.remove(index); }
 
-    public static int getArrayListLenth() { return serviceArrayList.size(); }
+    public static int getArrayListLength() { return serviceArrayList.size(); }
+
+
+
+    public static ArrayList<EmployeeUserProfile> employees;
+    public static ArrayList<FormSubmission> forms;
 
 }

@@ -13,6 +13,7 @@ public class FormSubmission {
         this.lastName = lastName;
         dob = dateOfBirth;
         addr = address;
+        this.formType = formType;
     }
 
     public String getFirstName() {

@@ -55,7 +55,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         EmployeeUserProfile newEmployee = new EmployeeUserProfile(firstName, lastName, user_email, user_password, "-1");
                         String success = EmployeeUserProfile.validate(newEmployee);
                         if (success.equals("success")) {
-                            EmployeeUserProfile.employees.add(newEmployee);
+                            GlobalArrays.employees.add(newEmployee);
                             Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                             finish();
                             startActivity(new Intent(RegistrationActivity.this, MainActivity.class));

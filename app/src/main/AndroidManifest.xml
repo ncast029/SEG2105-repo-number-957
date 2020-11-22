@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".AdminWelcomePage"></activity>
         <activity android:name=".CustomerWelcomePage" />
+        <activity android:name=".ViewApplication" />
         <activity android:name=".ProcessApplications" />
         <activity android:name =".EditEmployees" />
         <activity android:name=".EmployeeWelcomePage" />

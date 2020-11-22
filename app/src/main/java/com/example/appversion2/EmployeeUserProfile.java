@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class EmployeeUserProfile extends UserProfile {
 
-    public static ArrayList<EmployeeUserProfile> employees;
+
 
     public static String validate(EmployeeUserProfile emp) {
         String temp;
@@ -29,9 +29,9 @@ public class EmployeeUserProfile extends UserProfile {
     }
 
     public static EmployeeUserProfile getEmployee(String email) {
-        for (int i = 0; i < employees.size(); i++ ) {
-            if (employees.get(i).getEmployeeEmail().equals(email)) {
-                return employees.get(i);
+        for (int i = 0; i < GlobalArrays.employees.size(); i++ ) {
+            if (GlobalArrays.employees.get(i).getEmployeeEmail().equals(email)) {
+                return GlobalArrays.employees.get(i);
             }
         }
         return null;

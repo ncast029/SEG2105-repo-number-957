@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -227,13 +228,14 @@ public class DriversLicense extends AppCompatActivity {
     }
 
     private String submitForm(String dob, String address, String gLevel) {
-        try {
+        try {/*
             FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
-
+            myRef.setValue(form);*/
             FormSubmission form = new DriversForm( gLevel, /*getIntent().getExtras().getString("FirstName")*/ "", /*getIntent().getExtras().getString("LastName")*/ "", dob, address, "Driver's License");
-            myRef.setValue(form);
+            GlobalArrays.forms.add(form);
+
             return "";
         } catch (Exception e) {
             return e.getMessage();
@@ -241,23 +243,33 @@ public class DriversLicense extends AppCompatActivity {
     }
 
     private boolean dobValidate(String dob) {
-        if (dob == null || dob.equals("")) return false;
-        if ( dob.length() != 8 ) return false;
+        if (dob == null || dob.equals("")) {
+            Toast.makeText(this,"Date of birth cannot be empty", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        boolean temp = true;
+        if ( dob.length() != 8 ) temp = false;
         String doB[] = dob.split("/");
-        if (doB.length != 3) return false;
+        if (doB.length != 3) temp = false;
         for (int i = 0; i < 3; i++) {
             if (doB[i].length() != 2) {
-                return false;
+                temp = false;
             }
         }
-        if (Integer.parseInt(doB[0]) > 31 || Integer.parseInt(doB[0]) < 1) return false;
-        if (Integer.parseInt(doB[0]) > 12 || Integer.parseInt(doB[0]) < 1) return false;
-        if (Integer.parseInt(doB[0]) < 0) return false;
-        return true;
+        if (Integer.parseInt(doB[0]) > 31 || Integer.parseInt(doB[0]) < 1) temp =  false;
+        if (Integer.parseInt(doB[1]) > 12 || Integer.parseInt(doB[1]) < 1) temp =  false;
+        if (Integer.parseInt(doB[2]) < 0) temp = false;
+        if (!temp) {
+            Toast.makeText(this,"Invalid Date of Birth",Toast.LENGTH_LONG).show();
+        }
+        return temp;
     }
 
     private boolean addrValidate(String addr) {
-        if (addr == null || addr.equals("")) return false;
+        if (addr == null || addr.equals("")) {
+            Toast.makeText(this, "Address can not be empty", Toast.LENGTH_LONG).show();
+            return false;
+        }
         return true;
     }
 

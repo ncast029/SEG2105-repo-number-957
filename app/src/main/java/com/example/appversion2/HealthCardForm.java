@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
@@ -225,12 +226,14 @@ public class HealthCardForm extends AppCompatActivity {
 
     private String submitForm(String dob, String address) {
         try {
+            /*
             FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
-
+            myRef.setValue(form);*/
             FormSubmission form = new FormSubmission(/*getIntent().getExtras().getString("FirstName")*/ "", /*getIntent().getExtras().getString("LastName")*/ "", dob, address, "Health Card");
-            myRef.setValue(form);
+            GlobalArrays.forms.add(form);
+
             return "";
         } catch (Exception e) {
             return e.getMessage();
@@ -248,8 +251,8 @@ public class HealthCardForm extends AppCompatActivity {
             }
         }
         if (Integer.parseInt(doB[0]) > 31 || Integer.parseInt(doB[0]) < 1) return false;
-        if (Integer.parseInt(doB[0]) > 12 || Integer.parseInt(doB[0]) < 1) return false;
-        if (Integer.parseInt(doB[0]) < 0) return false;
+        if (Integer.parseInt(doB[1]) > 12 || Integer.parseInt(doB[1]) < 1) return false;
+        if (Integer.parseInt(doB[2]) < 0) return false;
         return true;
     }
 
